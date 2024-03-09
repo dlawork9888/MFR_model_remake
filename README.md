@@ -26,3 +26,16 @@ https://drive.google.com/file/d/1pPnMvljMY39c8nWpGoLHFMoHV5-_RMn9/view?usp=drive
 - 베이스 모델의 epoch 20 즈음 부터 val loss가 폭발하기 시작합니다 ! (early stopping 필요 !)
 
   
+### # 2024.03.09
+- re_mk1 탄생!
+- 모델 구조는 크게 변함이 없습니다.
+  - Conv2D로 MFCC의 지역적 특성 산출
+  - LSTM층의 추가로 시계열적 특성 반영
+  - Dense Drop-out 0.15
+- epoch 20 즈음에서 항상 validatopm loss 폭발이 발생하기 시작 => early stopping 적용
+- 최종 정확도 약 0.5
+  - 10 classes
+  - Multi label classifuication( one-hot, B-crossentropy, sigmoid )
+- "확신을 가지지 못하는 모델"을 만들어야만 합니다!
+  - 완벽하게 확신하는 정답이 아닌, 아슬아슬하게 맞추는 정답
+  - ex) 2번 레이블이 정답이지만, 1번 레이블의 sigmoid 산출값도 높게, 혹은 간소한 차이로 2번을 정답으로 뽑는 경우   
